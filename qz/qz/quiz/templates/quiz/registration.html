@@ -1,0 +1,30 @@
+{% extends "quiz/base.html" %}
+{% block title %} Register - {% endblock %}
+{% load static %}
+{% block body_block %}
+          <div class="container">
+              <div class="jumbotron">
+                {% if registered %}
+                    <h1>Thank you for registering!</h1>
+                    <a href="/quiz/user_login/" style="margin:45%;"> <button type="button" class="btn btn-primary">Login</button> </a>
+                {% else %}
+                    <h1>Register Here</h1>
+                    <h3>Get yourself registered here!</h3>
+                    <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <input type="submit" name="" value="Register">
+                    </form>
+                {% endif %}
+              </div>
+          </div>
+        {% endblock %}
+        {% block footer_block %}
+        <section id="footer" style="margin-top:80px;" class="bg-dark">
+                <p>Copyright &copy; Quiz World!
+                  <br>
+                  <a href="mailto:dshah0405@gmail.com">Email</a> | Developed with ❤ by <a href="https://www.linkedin.com/in/deep3072/" target="_blank"> Deep Shah</a>
+                </p>
+          </section>
+{% endblock %}

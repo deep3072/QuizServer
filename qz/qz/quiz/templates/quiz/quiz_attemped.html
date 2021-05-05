@@ -1,0 +1,95 @@
+{% extends "quiz/base.html" %}
+
+	{% block title %} {% endblock %}
+
+{% block style %}
+*:focus {
+		outline: 0 !important;
+	}
+{% endblock %}
+
+{% block body_block %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Hello {{ user.username }}!</strong> You have already attempted this quiz and can see answers below:)
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	  </div>
+{% for i in question %}
+
+
+	{% if i.course|stringformat:"s" == current_quiz %}
+
+
+<div class="container-fluid" >
+		<div class="modal-dialog" style="margin-left: 200px;">
+			<div class="modal-content" style="width: 900px;">
+				<div class="modal-header btn-dark" style="height: 57px;">
+					<h5>Q. {{ i.questions }}</h5>
+				</div>
+				<div class="modal-body jumbotron" >
+					<div class="col-xs-3 5"> </div>
+					<div class="quiz" id="quiz" data-toggle="buttons">
+						{% if i.Add_only_Textfield == True %}
+							 <textarea class="form-control" name='text' id="exampleFormControlTextarea1" rows="5"></textarea>
+
+						{% else %}
+						<label class="element-animation1 btn btn-lg btn-light btn-block">
+							<span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+							 <input type="radio" name="q_answer" value="1"> {{i.choice1}}</label>
+						<label class="element-animation2 btn btn-lg btn-light btn-block">
+							<span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+							<input type="radio" name="q_answer" value="2"> {{i.choice2}}</label>
+						{% if i.choice3 != "" and i.choice3 != "blank" and i.choice3 != "blank1" %}
+						<label class="element-animation3 btn btn-lg btn-light btn-block">
+							<span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+							<input type="radio" name="q_answer" value="3"> {{i.choice3}}</label>
+						{% endif %}
+						{% if i.choice4 != "" and i.choice4 != "blank" and i.choice4 != "blank1" %}
+						<label class="element-animation4 btn btn-lg btn-light btn-block">
+							<span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+							<input type="radio" name="q_answer" value="4"> {{i.choice4}} </label>
+						{% endif %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endif %}
+
+{% endfor %}
+	<div id="check">
+	<h2 style="margin-left:39%;">Answers!</h2>
+<div class="jumbotron" style="height:20px;">
+		{% for i in question %}
+		{% if i.course|stringformat:"s" == current_quiz %}
+			{% if i.answer|stringformat:"s" == "Option1" %}
+				<span> {{ forloop.counter }}.) {{i.choice1}}</span>
+			{% endif %}
+			{% if i.answer|stringformat:"s" == "Option2" %}
+				<span> {{ forloop.counter }}.) {{i.choice2}} </span>
+			{% endif %}
+			{% if i.answer|stringformat:"s" == "Option3" %}
+				<span> {{ forloop.counter }}.) {{i.choice3}}</span>
+			{% endif %}
+			{% if i.answer|stringformat:"s" == "Option4" %}
+				<span> {{ forloop.counter }}.) {{i.choice4}}</span>
+			{% endif %}
+			{% endif %}&nbsp;&nbsp;
+		{% endfor %}
+
+	</div>
+</div>
+
+
+{% endblock %}
+{% block footer_block %}
+<section id="footer" style="margin-top:80px;" class="bg-dark">
+	<p>Copyright &copy; Quiz World!
+	  <br>
+	  <a href="mailto:dshah0405@gmail.com">Email</a> | Developed with ❤ by <a href="https://www.linkedin.com/in/deep3072/" target="_blank"> Deep Shah</a>
+	</p>
+  </section>
+{% endblock %}

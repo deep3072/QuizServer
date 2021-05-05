@@ -1,0 +1,18 @@
+{% extends "quiz/base.html" %}
+{% block body_block %}
+        <div class="container">
+                <div class="jumbotron" style="margin-top:50px;">
+                    {% if user.is_authenticated %}
+                        <h2>Hello {{ user.username }}</h2>
+                        <h3>Let's get started to empower your knowldege & take quiz! </h3>
+                      <div style=" margin-top:35px;">
+                        <a href="/quiz/quiz_world/" style="margin:39%;"> <button type="button" class="btn btn-primary" >Take Quiz</button> </a>
+                          </div>
+                    {% else %}
+                      <h1>Welcome to the Quiz World !</h1>
+                        <h2>Let's Catch it and quiz it.</h2>
+                      <a href="/quiz/user_login/" style="margin:45%;"> <button type="button" class="btn btn-primary">Login</button> </a>
+                    {% endif %}
+                  </div>
+        </div>
+{% endblock %}

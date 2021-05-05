@@ -1,0 +1,21 @@
+{% extends 'quiz/base.html' %}
+{% block title %} Login - {% endblock %}
+
+{% block body_block %}
+        <div class="container">
+                <h1 style="margin-left:39%;">Welcome Back!</h1>
+                <div class="jumbotron">
+                <h1>Login here :</h1>
+                <form method="post" action="{% url 'quiz:user_login' %}">
+                 {% csrf_token %}
+                 <label for="username">Username:</label>
+                 <input type="text" name="username" placeholder="Username"><br><br>
+                 <label for="password" >Password:</label>
+                 <input type="password" name="password" placeholder="Password"><br>
+                 <div style="margin-top:10px;">
+                <input type="submit" name="" value="Login" ></div>
+                <div style="margin-top:10px;"> New User? <a href="/quiz/register/"> Register here</a></div>
+                </form>
+                </div>
+        </div>
+{% endblock %}
